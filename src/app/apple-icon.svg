@@ -1,0 +1,9 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="180" height="180" fill="#0c1f35"/>
+  <!-- Outer hexagon -->
+  <path d="M90 30L150 60V120L90 150L30 120V60L90 30Z" stroke="#0d9488" stroke-width="6" fill="none"/>
+  <!-- Inner hexagon -->
+  <path d="M90 50L130 72.5V117.5L90 140L50 117.5V72.5L90 50Z" stroke="#14b8a6" stroke-width="4" fill="none"/>
+  <!-- Small hexagon -->
+  <path d="M90 70L115 85V115L90 130L65 115V85L90 70Z" fill="#0d9488"/>
+</svg>
