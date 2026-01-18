@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Shield } from "lucide-react";
+import Link from "next/link";
 
 export default function PrivacyPage() {
   return (
@@ -39,269 +40,136 @@ export default function PrivacyPage() {
       </section>
 
       {/* Content */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="container max-w-3xl">
-          <div className="prose prose-lg max-w-none">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy mt-0">
-                Introduction
-              </h2>
-              <p className="text-gray-600">
-                TeleHealth Van Network ("we," "our," or "us") is committed to
-                protecting your privacy. This Privacy Policy explains how we
-                collect, use, disclose, and safeguard your information when you
-                use our mental health services and website.
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-12"
+          >
+            {/* Introduction */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Introduction</h2>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                TeleHealth Van Network (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) is committed to
+                protecting your privacy. This Privacy Policy explains how we collect, use, disclose,
+                and safeguard your information when you use our mental health services and website.
               </p>
-              <p className="text-gray-600">
-                We understand that mental health is deeply personal. That's why
-                we've designed our services to offer anonymous access when
-                possible, and we take extensive measures to protect any
-                information you do share with us.
+              <p className="text-gray-600 leading-relaxed">
+                We understand that mental health is deeply personal. That&apos;s why we&apos;ve designed
+                our services to offer anonymous access when possible, and we take extensive measures
+                to protect any information you do share with us.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Information We Collect
-              </h2>
-              <h3 className="text-lg font-semibold text-navy">
-                Information You Provide
-              </h3>
-              <ul className="text-gray-600 space-y-2">
-                <li>
-                  Contact information (name, email, phone) if you choose to
-                  provide it
-                </li>
-                <li>Scheduling preferences and appointment information</li>
-                <li>
-                  Digital waiver acknowledgments and consent forms
-                </li>
-                <li>
-                  Communications you send to us through our website or during
-                  sessions
-                </li>
-                <li>
-                  Eligibility verification information (student status,
-                  residency) as required by specific programs
-                </li>
-              </ul>
-
-              <h3 className="text-lg font-semibold text-navy">
-                Therapy Session Information
-              </h3>
-              <p className="text-gray-600">
-                Clinical notes and session information are maintained by our
-                licensed therapists in accordance with professional standards
-                and HIPAA requirements. This information is kept strictly
-                confidential and is separate from general website data.
+            {/* Information We Collect */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Information We Collect</h2>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                <strong className="text-navy">Information You Provide:</strong> Contact information
+                (name, email, phone) if you choose to provide it, scheduling preferences, digital
+                waiver acknowledgments, and eligibility verification information as required by
+                specific programs.
               </p>
-
-              <h3 className="text-lg font-semibold text-navy">
-                Automatically Collected Information
-              </h3>
-              <ul className="text-gray-600 space-y-2">
-                <li>
-                  Device information (browser type, operating system)
-                </li>
-                <li>IP address and general location data</li>
-                <li>Website usage data and analytics</li>
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                How We Use Your Information
-              </h2>
-              <ul className="text-gray-600 space-y-2">
-                <li>To provide and improve our mental health services</li>
-                <li>To schedule and manage therapy appointments</li>
-                <li>To verify eligibility for specific programs</li>
-                <li>To communicate with you about your care</li>
-                <li>
-                  To comply with legal obligations and professional
-                  requirements
-                </li>
-                <li>
-                  To generate anonymized, aggregate data for program reporting
-                  to funders
-                </li>
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Anonymous Services
-              </h2>
-              <p className="text-gray-600">
-                We offer 100% anonymous services. You may access therapy without
-                providing your real name or identifying information. When you
-                choose anonymous services:
+              <p className="text-gray-600 leading-relaxed mb-4">
+                <strong className="text-navy">Therapy Session Information:</strong> Clinical notes
+                are maintained by our licensed therapists in accordance with professional standards
+                and HIPAA requirements. This information is kept strictly confidential.
               </p>
-              <ul className="text-gray-600 space-y-2">
-                <li>No personal identifying information is required</li>
-                <li>
-                  Session notes are maintained under an anonymous identifier
-                </li>
-                <li>
-                  We do not track or store information that could identify you
-                </li>
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                HIPAA Compliance
-              </h2>
-              <p className="text-gray-600">
-                As a mental health service provider, we comply with the Health
-                Insurance Portability and Accountability Act (HIPAA). Your
-                protected health information (PHI) is:
+              <p className="text-gray-600 leading-relaxed">
+                <strong className="text-navy">Automatically Collected:</strong> Device information,
+                IP address, general location data, and website usage analytics.
               </p>
-              <ul className="text-gray-600 space-y-2">
-                <li>
-                  Stored securely using encrypted systems
-                </li>
-                <li>
-                  Accessible only to authorized healthcare providers involved in
-                  your care
-                </li>
-                <li>
-                  Never shared without your consent except as required by law
-                </li>
-                <li>
-                  Subject to your rights to access, correct, and request
-                  restrictions
-                </li>
-              </ul>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Information Sharing
-              </h2>
-              <p className="text-gray-600">
-                We do not sell your personal information. We may share
-                information only in the following circumstances:
+            {/* How We Use Your Information */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">How We Use Your Information</h2>
+              <p className="text-gray-600 leading-relaxed">
+                We use your information to provide and improve our mental health services, schedule
+                and manage therapy appointments, verify eligibility for specific programs, communicate
+                with you about your care, comply with legal obligations, and generate anonymized,
+                aggregate data for program reporting to funders.
               </p>
-              <ul className="text-gray-600 space-y-2">
-                <li>With your explicit consent</li>
-                <li>
-                  To comply with legal requirements (court orders, subpoenas)
-                </li>
-                <li>
-                  When required to prevent imminent harm to you or others
-                </li>
-                <li>
-                  In anonymized, aggregate form for program reporting to funders
-                </li>
-                <li>
-                  With service providers who assist our operations (under strict
-                  confidentiality agreements)
-                </li>
-              </ul>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Data Security
-              </h2>
-              <p className="text-gray-600">
-                We implement industry-standard security measures including:
+            {/* Anonymous Services */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Anonymous Services</h2>
+              <p className="text-gray-600 leading-relaxed">
+                We offer 100% anonymous services. You may access therapy without providing your
+                real name or identifying information. When you choose anonymous services, no personal
+                identifying information is required, session notes are maintained under an anonymous
+                identifier, and we do not track or store information that could identify you.
               </p>
-              <ul className="text-gray-600 space-y-2">
-                <li>SSL/TLS encryption for all data transmission</li>
-                <li>Encrypted data storage</li>
-                <li>
-                  Secure video conferencing platforms for telehealth sessions
-                </li>
-                <li>Regular security audits and updates</li>
-                <li>
-                  Staff training on privacy and security best practices
-                </li>
-              </ul>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Your Rights
-              </h2>
-              <p className="text-gray-600">You have the right to:</p>
-              <ul className="text-gray-600 space-y-2">
-                <li>Access your personal information and health records</li>
-                <li>Request corrections to inaccurate information</li>
-                <li>Request deletion of your data (subject to legal requirements)</li>
-                <li>Opt out of non-essential communications</li>
-                <li>Request restrictions on how your information is used</li>
-                <li>Receive a copy of this privacy policy</li>
-              </ul>
-            </motion.div>
+            {/* HIPAA Compliance */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">HIPAA Compliance</h2>
+              <p className="text-gray-600 leading-relaxed">
+                As a mental health service provider, we comply with HIPAA. Your protected health
+                information (PHI) is stored securely using encrypted systems, accessible only to
+                authorized healthcare providers involved in your care, never shared without your
+                consent except as required by law, and subject to your rights to access, correct,
+                and request restrictions.
+              </p>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Contact Us
-              </h2>
-              <p className="text-gray-600">
-                If you have questions about this Privacy Policy or wish to
-                exercise your rights, please contact us at:
+            {/* Information Sharing */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Information Sharing</h2>
+              <p className="text-gray-600 leading-relaxed">
+                We do not sell your personal information. We may share information only with your
+                explicit consent, to comply with legal requirements, when required to prevent imminent
+                harm, in anonymized form for program reporting, or with service providers under strict
+                confidentiality agreements.
               </p>
-              <p className="text-gray-600">
-                <strong>Email:</strong> privacy@telehealthvan.com
-                <br />
-                <strong>Phone:</strong> Contact through our website
-              </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Changes to This Policy
-              </h2>
-              <p className="text-gray-600">
-                We may update this Privacy Policy from time to time. We will
-                notify you of any material changes by posting the new policy on
-                this page and updating the "Last updated" date.
+            {/* Data Security */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Data Security</h2>
+              <p className="text-gray-600 leading-relaxed">
+                We implement industry-standard security measures including SSL/TLS encryption,
+                encrypted data storage, secure video conferencing platforms, regular security audits,
+                and staff training on privacy best practices.
               </p>
-            </motion.div>
-          </div>
+            </div>
+
+            {/* Your Rights */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Your Rights</h2>
+              <p className="text-gray-600 leading-relaxed">
+                You have the right to access your personal information and health records, request
+                corrections to inaccurate information, request deletion of your data (subject to
+                legal requirements), opt out of non-essential communications, and request restrictions
+                on how your information is used.
+              </p>
+            </div>
+
+            {/* Contact */}
+            <div className="bg-gray-50 rounded-2xl p-8">
+              <h2 className="text-2xl font-bold text-navy mb-4">Contact Us</h2>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                If you have questions about this Privacy Policy or wish to exercise your rights,
+                please contact us at <strong>privacy@telehealthvan.com</strong> or visit our support page.
+              </p>
+              <Link
+                href="/support"
+                className="inline-flex bg-teal hover:bg-teal-dark text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              >
+                Contact Support
+              </Link>
+            </div>
+
+            {/* Changes */}
+            <p className="text-gray-500 text-sm text-center pt-8 border-t border-gray-200">
+              We may update this Privacy Policy from time to time. Changes will be posted on this
+              page with an updated &ldquo;Last updated&rdquo; date.
+            </p>
+          </motion.div>
         </div>
       </section>
     </>

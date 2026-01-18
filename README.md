@@ -1,30 +1,27 @@
-# TeleHealth Van Network Website
+# TeleHealth Van Network
 
-A Next.js website for TeleHealth Van Network - the nation's largest 5G-enabled mobile telehealth fleet providing free, anonymous mental health therapy.
+The nation's largest 5G-enabled mobile telehealth fleet providing **free, anonymous mental health therapy** for everyone.
 
-## Project Overview
+![TeleHealth Van Network](public/images/van-fleet.jpg)
 
-**Organization:** TeleHealth Van Network
-**Mission:** Free, anonymous mental health therapy for everyone. Licensed therapists. No insurance required. No one turned away.
+## About
 
-### Target Audiences
-1. Major Foundations (Ballmer, Gates, Parsons, Ruderman level)
-2. Government Agencies (Departments of Mental Health, cities, counties)
-3. Universities & Schools
-4. Nonprofits
-5. Individuals seeking support
+TeleHealth Van Network delivers free, grant-funded mental health care through mobile telehealth vans and remote therapy sessions. Licensed therapists. No insurance required. No one turned away.
 
----
+### Key Differentiators
+- **100% Free** - All services funded by grants and partnerships
+- **100% Anonymous** - No personal data required
+- **Licensed Therapists** - Professional mental health care
+- **Mobile Fleet** - Nation's largest 5G-enabled telehealth van network
 
 ## Tech Stack
 
-- **Framework:** Next.js 14+ (App Router)
+- **Framework:** Next.js 16 (App Router)
 - **Language:** TypeScript
-- **Styling:** Tailwind CSS
+- **Styling:** Tailwind CSS v4
+- **Animations:** Framer Motion
 - **Fonts:** Playfair Display (headings), Inter (body)
-- **Deployment:** Vercel-ready
-
----
+- **Icons:** Lucide React
 
 ## Getting Started
 
@@ -33,13 +30,24 @@ A Next.js website for TeleHealth Van Network - the nation's largest 5G-enabled m
 - npm or yarn
 
 ### Installation
+
 ```bash
+# Clone the repository
+git clone https://github.com/dion-sketch/telehealth-van-network.git
+cd telehealth-van-network
+
 # Install dependencies
 npm install
 
 # Run development server
 npm run dev
+```
 
+Open [http://localhost:3000](http://localhost:3000) to view the site.
+
+### Build
+
+```bash
 # Build for production
 npm run build
 
@@ -47,60 +55,83 @@ npm run build
 npm start
 ```
 
-### Development
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000)
-
----
-
 ## Project Structure
 
 ```
 telehealth-van/
-├── app/                    # Next.js App Router pages
-│   ├── layout.tsx          # Root layout with header/footer
-│   ├── page.tsx            # Home page
-│   ├── programs/           # Programs page
-│   ├── impact/             # Impact & Recognition page
-│   ├── fleet/              # Our Fleet page
-│   ├── partner/            # Partner With Us page
-│   └── support/            # Get Support page
-├── components/
-│   ├── ui/                 # Reusable UI components
-│   ├── layout/             # Header, Footer, Navigation
-│   └── sections/           # Page section components
-├── lib/
-│   └── data.ts             # Content and data
+├── src/
+│   ├── app/                    # Next.js App Router pages
+│   │   ├── layout.tsx          # Root layout
+│   │   ├── page.tsx            # Home page
+│   │   ├── programs/           # Programs page
+│   │   ├── impact/             # Impact & Recognition
+│   │   ├── fleet/              # Our Fleet
+│   │   ├── partner/            # Partner With Us
+│   │   ├── support/            # Get Support
+│   │   ├── faq/                # FAQ
+│   │   ├── privacy/            # Privacy Policy
+│   │   ├── terms/              # Terms of Service
+│   │   └── accessibility/      # Accessibility Statement
+│   ├── components/
+│   │   ├── layout/             # Header, Footer
+│   │   ├── sections/           # Page sections
+│   │   └── ui/                 # Reusable UI components
+│   └── lib/
+│       └── data.ts             # Content and data
 ├── public/
-│   └── images/             # Logos, photos, assets
-├── styles/
-│   └── globals.css         # Global styles
-├── CLAUDE.md               # AI assistant instructions
-└── README.md               # This file
+│   └── images/                 # Logos, photos, assets
+└── package.json
 ```
-
----
 
 ## Pages
 
 | Route | Page | Description |
 |-------|------|-------------|
-| `/` | Home | Hero, impact stats, programs overview, partners |
+| `/` | Home | Hero, stats, programs overview, partners, fleet gallery |
 | `/programs` | Programs | All 6 programs with detailed descriptions |
-| `/impact` | Impact | Metrics, awards, media coverage |
+| `/impact` | Impact | Metrics, awards, media coverage, testimonials |
 | `/fleet` | Fleet | Van information, locations, how it works |
 | `/partner` | Partner | Partnership opportunities, contact form |
 | `/support` | Support | Access care, crisis resources, contact form |
+| `/faq` | FAQ | Frequently asked questions |
+| `/privacy` | Privacy | Privacy Policy |
+| `/terms` | Terms | Terms of Service |
+| `/accessibility` | Accessibility | Accessibility Statement |
 
----
+## Programs
+
+1. **Mobile Telehealth Van** - Flagship 5G-enabled fleet serving communities
+2. **Student Wellness Program** - University partnerships across the country
+3. **Hawthorne Cares** - First city-wide mental health program in the nation
+4. **Wellness Helpline for Afghans** - USCRI partnership for refugee support
+5. **Pull Up Mental Health Concert** - Annual event with Grammy-winning artists
+6. **Jewish Student Mental Health** - Ruderman Foundation funded program in Boston
+
+## Impact
+
+| Metric | Value |
+|--------|-------|
+| Therapy Sessions Delivered | 30,000+ |
+| Students at Pull Up Concert | 9,000 |
+| Cost to Clients | $0 |
+| Fleet Status | #1 Largest 5G-Enabled Nationwide |
+
+## Partners
+
+- LA County Department of Mental Health
+- City of Hawthorne
+- Ruderman Family Foundation
+- Behavioral Health Services (BHS)
+- U.S. Committee for Refugees and Immigrants (USCRI)
+- 4Hunnid Wayz Foundation
+- American Indian Changing Spirits (AICS)
 
 ## Design System
 
 ### Colors
-| Name | Hex | Usage |
-|------|-----|-------|
+
+| Name | Value | Usage |
+|------|-------|-------|
 | Navy | `#0c1f35` | Primary dark, backgrounds |
 | Navy Light | `#163456` | Secondary dark |
 | Teal | `#0d9488` | Primary accent, CTAs |
@@ -109,93 +140,23 @@ telehealth-van/
 | Gold | `#d4a853` | Secondary accent |
 
 ### Typography
-- **Headings:** Playfair Display (serif)
-- **Body:** Inter (sans-serif)
 
-### Breakpoints
-- Mobile: < 640px
-- Tablet: 768px - 1023px
-- Desktop: 1024px+
+- **Display Font:** Playfair Display (serif)
+- **Body Font:** Inter (sans-serif)
 
----
+## Scripts
 
-## Content Overview
-
-### Programs (6)
-1. **Mobile Telehealth Van** - Flagship 5G-enabled fleet
-2. **Student Wellness Program** - University partnerships
-3. **Jewish Student Mental Health** - Boston universities (Ruderman Foundation)
-4. **Pull Up Mental Health Concert** - Annual event with Grammy artists
-5. **Hawthorne Cares** - First city-wide program in the nation
-6. **Wellness Helpline for Afghans** - USCRI partnership
-
-### Key Stats
-- 30,000+ therapy sessions delivered
-- 9,000 students at Pull Up Concert
-- $0 cost to clients
-- #1 largest 5G telehealth fleet
-
-### Partners
-- LA County Department of Mental Health
-- City of Hawthorne
-- Ruderman Family Foundation
-- Behavioral Health Services
-- USCRI
-- 4Hunnid Wayz Foundation
-- American Indian Changing Spirits
-
----
-
-## Brand Assets
-
-**Note:** Copy all images from `Old files/images/` to `/public/images/` before starting development.
-
-### Logos (copy from `Old files/images/` to `/public/images/`)
-- `telehealth-van-logo.png` - Main logo
-- `pull-up-logo.png` - Pull Up Concert
-- `hawthorne-cares-logo.png` - Hawthorne program
-- `student-wellness-logo.png` - Student program
-- `wha-afghan-logo.png` - Afghan helpline
-- Partner logos (la-dmh, hawthorne-city, ruderman, bhs, uscri, aics, 4hunnid)
-
-### Photos
-- `video-thumbnail.png` - Fleet of vans
-- `van-southwest-college.jpg` - Van at college
-- `van-military-base.jpg` - Van at military base
-- `walk-up-session.png` - Session in progress
-- `a-frame-sign.png` - Information sign
-
----
-
-## Development Notes
-
-### For AI Assistants
-See `CLAUDE.md` for detailed instructions including:
-- Always use `/frontend-design` skill for UI work
-- Component reusability requirements
-- Mobile responsiveness checklist
-- Design system specifications
-
-### Key Requirements
-1. **Professional aesthetic** - Targeting major foundation funders
-2. **Mobile responsive** - All pages must work on all devices
-3. **Reusable components** - DRY principle for all UI elements
-4. **Accessibility** - ARIA labels, semantic HTML, alt text
-
----
-
-## Reference Documents
-
-- **Plan File:** `C:\Users\User\.claude\plans\replicated-seeking-spark.md`
-  - Contains all business information, content, and specifications
-  - **Review before any development work**
-
-- **Old Website:** `Old files/` folder
-  - Reference for content and structure (not tech stack)
-  - **DO NOT modify** - read-only reference material
-
----
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
+```
 
 ## License
 
 Private - TeleHealth Van Network
+
+---
+
+Built with Next.js and Tailwind CSS

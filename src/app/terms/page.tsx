@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FileText } from "lucide-react";
+import Link from "next/link";
 
 export default function TermsPage() {
   return (
@@ -39,287 +40,152 @@ export default function TermsPage() {
       </section>
 
       {/* Content */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="container max-w-3xl">
-          <div className="prose prose-lg max-w-none">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy mt-0">
-                Agreement to Terms
-              </h2>
-              <p className="text-gray-600">
-                By accessing or using TeleHealth Van Network's services,
-                website, and mobile telehealth vans, you agree to be bound by
-                these Terms of Service. If you do not agree to these terms,
-                please do not use our services.
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-12"
+          >
+            {/* Agreement */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Agreement to Terms</h2>
+              <p className="text-gray-600 leading-relaxed">
+                By accessing or using TeleHealth Van Network&apos;s services, website, and mobile
+                telehealth vans, you agree to be bound by these Terms of Service. If you do not
+                agree to these terms, please do not use our services.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Description of Services
-              </h2>
-              <p className="text-gray-600">
-                TeleHealth Van Network provides free, grant-funded mental health
-                therapy services through:
+            {/* Description of Services */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Description of Services</h2>
+              <p className="text-gray-600 leading-relaxed">
+                TeleHealth Van Network provides free, grant-funded mental health therapy services
+                through mobile telehealth vans equipped with secure video conferencing, remote
+                telehealth therapy sessions, walk-up mental health support in designated areas,
+                and specialized programs for specific populations. Our services are provided by
+                licensed mental health professionals and are completely free to clients.
               </p>
-              <ul className="text-gray-600 space-y-2">
-                <li>
-                  Mobile telehealth vans equipped with secure video conferencing
-                </li>
-                <li>Remote telehealth therapy sessions</li>
-                <li>Walk-up mental health support in designated areas</li>
-                <li>Specialized programs for specific populations</li>
-              </ul>
-              <p className="text-gray-600">
-                Our services are provided by licensed mental health
-                professionals and are completely free to clients.
-              </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Eligibility
-              </h2>
-              <p className="text-gray-600">
-                Eligibility for specific programs may vary based on grant
-                requirements. General eligibility includes:
+            {/* Emergency Notice */}
+            <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+              <h2 className="text-xl font-bold text-red-900 mb-3">Not Emergency Services</h2>
+              <p className="text-red-800 font-medium mb-3">
+                TeleHealth Van services are NOT emergency mental health services.
               </p>
-              <ul className="text-gray-600 space-y-2">
-                <li>
-                  Students enrolled at partner universities (Student Wellness
-                  Program)
-                </li>
-                <li>
-                  Residents of cities with active TeleHealth Van contracts
-                </li>
-                <li>
-                  Afghan refugees through our USCRI partnership program
-                </li>
-                <li>
-                  Jewish students at Boston-area universities (Ruderman
-                  Foundation program)
-                </li>
-                <li>
-                  Individuals accessing walk-up services at our van locations
-                </li>
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Not Emergency Services
-              </h2>
-              <p className="text-gray-600 font-semibold">
-                TeleHealth Van services are NOT emergency mental health
-                services.
-              </p>
-              <p className="text-gray-600">
+              <p className="text-red-700 mb-2">
                 If you are experiencing a mental health emergency, please:
               </p>
-              <ul className="text-gray-600 space-y-2">
+              <ul className="text-red-700 space-y-1 ml-4 list-disc">
                 <li>Call 988 (Suicide & Crisis Lifeline)</li>
                 <li>Call 911</li>
                 <li>Go to your nearest emergency room</li>
               </ul>
-              <p className="text-gray-600">
-                Our services are designed for ongoing mental health support, not
-                crisis intervention.
-              </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                User Responsibilities
-              </h2>
-              <p className="text-gray-600">When using our services, you agree to:</p>
-              <ul className="text-gray-600 space-y-2">
-                <li>
-                  Provide accurate eligibility information when required
-                </li>
-                <li>
-                  Treat our staff, therapists, and other clients with respect
-                </li>
-                <li>
-                  Attend scheduled appointments or cancel with reasonable notice
-                </li>
-                <li>
-                  Use our services for legitimate mental health support purposes
-                </li>
-                <li>
-                  Not engage in disruptive, threatening, or harmful behavior
-                </li>
-                <li>
-                  Maintain the confidentiality of any access credentials
-                  provided
-                </li>
-              </ul>
-            </motion.div>
+            {/* Eligibility */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Eligibility</h2>
+              <p className="text-gray-600 leading-relaxed">
+                Eligibility for specific programs may vary based on grant requirements. General
+                eligibility includes students enrolled at partner universities, residents of cities
+                with active TeleHealth Van contracts, Afghan refugees through our USCRI partnership,
+                Jewish students at Boston-area universities (Ruderman Foundation program), and
+                individuals accessing walk-up services at our van locations.
+              </p>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Confidentiality and Privacy
-              </h2>
-              <p className="text-gray-600">
-                Your therapy sessions are confidential. However, therapists are
-                legally required to break confidentiality in certain situations:
+            {/* User Responsibilities */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">User Responsibilities</h2>
+              <p className="text-gray-600 leading-relaxed">
+                When using our services, you agree to provide accurate eligibility information when
+                required, treat our staff, therapists, and other clients with respect, attend
+                scheduled appointments or cancel with reasonable notice, use our services for
+                legitimate mental health support purposes, and maintain the confidentiality of any
+                access credentials provided.
               </p>
-              <ul className="text-gray-600 space-y-2">
-                <li>
-                  When there is imminent danger to yourself or others
-                </li>
-                <li>When child, elder, or dependent adult abuse is suspected</li>
-                <li>When ordered by a court of law</li>
-              </ul>
-              <p className="text-gray-600">
-                For full details on how we handle your information, please
-                review our Privacy Policy.
-              </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Intellectual Property
-              </h2>
-              <p className="text-gray-600">
-                All content on the TeleHealth Van website, including text,
-                graphics, logos, and images, is the property of TeleHealth Van
-                Network or its content suppliers and is protected by copyright
-                laws.
+            {/* Confidentiality */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Confidentiality and Privacy</h2>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                Your therapy sessions are confidential. However, therapists are legally required
+                to break confidentiality when there is imminent danger to yourself or others, when
+                child, elder, or dependent adult abuse is suspected, or when ordered by a court of law.
               </p>
-            </motion.div>
+              <p className="text-gray-600 leading-relaxed">
+                For full details on how we handle your information, please review our{" "}
+                <Link href="/privacy" className="text-teal hover:underline">Privacy Policy</Link>.
+              </p>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Limitation of Liability
-              </h2>
-              <p className="text-gray-600">
-                TeleHealth Van Network provides mental health services in good
-                faith through licensed professionals. However, we cannot
-                guarantee specific outcomes from therapy. To the maximum extent
-                permitted by law, TeleHealth Van Network shall not be liable for
-                any indirect, incidental, special, consequential, or punitive
-                damages resulting from your use of our services.
+            {/* Limitation of Liability */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Limitation of Liability</h2>
+              <p className="text-gray-600 leading-relaxed">
+                TeleHealth Van Network provides mental health services in good faith through licensed
+                professionals. However, we cannot guarantee specific outcomes from therapy. To the
+                maximum extent permitted by law, TeleHealth Van Network shall not be liable for any
+                indirect, incidental, special, consequential, or punitive damages resulting from
+                your use of our services.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Service Availability
-              </h2>
-              <p className="text-gray-600">
-                We strive to provide consistent services but cannot guarantee
-                uninterrupted availability. Services may be affected by:
+            {/* Service Availability */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Service Availability</h2>
+              <p className="text-gray-600 leading-relaxed">
+                We strive to provide consistent services but cannot guarantee uninterrupted
+                availability. Services may be affected by grant funding cycles, therapist availability,
+                technical issues with telehealth platforms, weather or other conditions affecting
+                van locations, and program-specific restrictions.
               </p>
-              <ul className="text-gray-600 space-y-2">
-                <li>Grant funding cycles and availability</li>
-                <li>Therapist availability</li>
-                <li>Technical issues with telehealth platforms</li>
-                <li>Weather or other conditions affecting van locations</li>
-                <li>Program-specific restrictions</li>
-              </ul>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Termination
-              </h2>
-              <p className="text-gray-600">
-                We reserve the right to terminate or suspend access to our
-                services for violations of these terms or for any behavior that
-                threatens the safety of our staff, therapists, or other clients.
+            {/* Termination */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Termination</h2>
+              <p className="text-gray-600 leading-relaxed">
+                We reserve the right to terminate or suspend access to our services for violations
+                of these terms or for any behavior that threatens the safety of our staff, therapists,
+                or other clients.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Changes to Terms
-              </h2>
-              <p className="text-gray-600">
-                We may modify these Terms of Service at any time. Changes will
-                be effective immediately upon posting to our website. Your
-                continued use of our services after changes constitutes
-                acceptance of the modified terms.
+            {/* Changes & Governing Law */}
+            <div>
+              <h2 className="text-2xl font-bold text-navy mb-4">Changes to Terms</h2>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                We may modify these Terms of Service at any time. Changes will be effective
+                immediately upon posting to our website. Your continued use of our services after
+                changes constitutes acceptance of the modified terms.
               </p>
-            </motion.div>
+              <p className="text-gray-600 leading-relaxed">
+                These Terms of Service shall be governed by and construed in accordance with the
+                laws of the State of California.
+              </p>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Governing Law
-              </h2>
-              <p className="text-gray-600">
-                These Terms of Service shall be governed by and construed in
-                accordance with the laws of the State of California, without
-                regard to its conflict of law provisions.
+            {/* Contact */}
+            <div className="bg-gray-50 rounded-2xl p-8">
+              <h2 className="text-2xl font-bold text-navy mb-4">Contact Information</h2>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                For questions about these Terms of Service, please contact us at{" "}
+                <strong>legal@telehealthvan.com</strong> or visit our support page.
               </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-2xl font-bold text-navy">
-                Contact Information
-              </h2>
-              <p className="text-gray-600">
-                For questions about these Terms of Service, please contact us
-                at:
-              </p>
-              <p className="text-gray-600">
-                <strong>Email:</strong> legal@telehealthvan.com
-                <br />
-                <strong>Website:</strong> telehealthvan.com/support
-              </p>
-            </motion.div>
-          </div>
+              <Link
+                href="/support"
+                className="inline-flex bg-teal hover:bg-teal-dark text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              >
+                Contact Support
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
     </>

@@ -2,12 +2,24 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, MessageCircle } from "lucide-react";
+import {
+  ChevronDown,
+  HelpCircle,
+  Rocket,
+  Users,
+  Building2,
+  Lock,
+  AlertTriangle,
+  Search,
+} from "lucide-react";
 import Link from "next/link";
 
-const faqs = [
+const categories = [
   {
-    category: "Getting Started",
+    id: "getting-started",
+    name: "Getting Started",
+    icon: Rocket,
+    color: "teal",
     questions: [
       {
         q: "How do I access TeleHealth Van services?",
@@ -28,7 +40,10 @@ const faqs = [
     ],
   },
   {
-    category: "About Our Therapists",
+    id: "therapists",
+    name: "Our Therapists",
+    icon: Users,
+    color: "purple",
     questions: [
       {
         q: "Are your therapists licensed?",
@@ -45,7 +60,10 @@ const faqs = [
     ],
   },
   {
-    category: "Programs & Eligibility",
+    id: "programs",
+    name: "Programs & Eligibility",
+    icon: Building2,
+    color: "blue",
     questions: [
       {
         q: "Who is eligible for TeleHealth Van services?",
@@ -66,7 +84,10 @@ const faqs = [
     ],
   },
   {
-    category: "Sessions & Privacy",
+    id: "privacy",
+    name: "Sessions & Privacy",
+    icon: Lock,
+    color: "emerald",
     questions: [
       {
         q: "How long is a therapy session?",
@@ -87,7 +108,10 @@ const faqs = [
     ],
   },
   {
-    category: "Crisis Support",
+    id: "crisis",
+    name: "Crisis Support",
+    icon: AlertTriangle,
+    color: "red",
     questions: [
       {
         q: "What if I'm in a mental health crisis?",
@@ -102,13 +126,33 @@ const faqs = [
 ];
 
 export default function FAQPage() {
+  const [activeCategory, setActiveCategory] = useState("getting-started");
   const [openItems, setOpenItems] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const toggleItem = (id: string) => {
     setOpenItems((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
   };
+
+  const currentCategory = categories.find((c) => c.id === activeCategory);
+
+  // Filter questions based on search
+  const filteredCategories = searchQuery
+    ? categories
+        .map((category) => ({
+          ...category,
+          questions: category.questions.filter(
+            (q) =>
+              q.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              q.a.toLowerCase().includes(searchQuery.toLowerCase())
+          ),
+        }))
+        .filter((category) => category.questions.length > 0)
+    : null;
+
+  const displayCategories = filteredCategories || (currentCategory ? [currentCategory] : []);
 
   return (
     <>
@@ -120,9 +164,9 @@ export default function FAQPage() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 bg-white/10 border border-white/10 px-4 py-2 rounded-full mb-6"
           >
-            <MessageCircle className="w-4 h-4 text-teal-light" />
+            <HelpCircle className="w-4 h-4 text-teal-light" />
             <span className="text-teal-light text-sm font-semibold">
-              Common Questions
+              Help Center
             </span>
           </motion.div>
           <motion.h1
@@ -131,99 +175,204 @@ export default function FAQPage() {
             transition={{ delay: 0.1 }}
             className="font-display text-4xl md:text-5xl font-bold text-white mb-4"
           >
-            Frequently Asked Questions
+            How can we help?
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-white/70 max-w-2xl mx-auto"
+            className="text-xl text-white/70 max-w-2xl mx-auto mb-8"
           >
-            Find answers to common questions about our mental health services,
-            eligibility, and how to get started.
+            Find answers to common questions about our mental health services.
           </motion.p>
+
+          {/* Search Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="max-w-xl mx-auto"
+          >
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search for answers..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-teal focus:bg-white/15 transition-colors"
+              />
+            </div>
+          </motion.div>
         </div>
       </section>
 
+      {/* Category Tabs */}
+      {!searchQuery && (
+        <section className="bg-white border-b border-gray-100 sticky top-[72px] z-30">
+          <div className="container">
+            <div className="flex overflow-x-auto gap-2 py-4 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:justify-center">
+              {categories.map((category) => {
+                const Icon = category.icon;
+                const isActive = activeCategory === category.id;
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm whitespace-nowrap transition-all ${
+                      isActive
+                        ? "bg-navy text-white shadow-md"
+                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    {category.name}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* FAQ Content */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="container max-w-4xl">
-          {faqs.map((category, categoryIndex) => (
+          {searchQuery && (
             <motion.div
-              key={category.category}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: categoryIndex * 0.1 }}
-              className="mb-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="mb-8"
             >
-              <h2 className="font-display text-2xl font-bold text-navy mb-6 pb-3 border-b border-gray-200">
-                {category.category}
-              </h2>
-              <div className="space-y-3">
-                {category.questions.map((item, index) => {
-                  const itemId = `${categoryIndex}-${index}`;
-                  const isOpen = openItems.includes(itemId);
-                  return (
-                    <div
-                      key={index}
-                      className="border border-gray-200 rounded-xl overflow-hidden"
-                    >
-                      <button
-                        onClick={() => toggleItem(itemId)}
-                        className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors"
-                      >
-                        <span className="font-semibold text-navy pr-4">
-                          {item.q}
-                        </span>
-                        <ChevronDown
-                          className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform ${
-                            isOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                      <AnimatePresence>
-                        {isOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="px-5 pb-5 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
-                              {item.a}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  );
-                })}
-              </div>
+              <p className="text-gray-500">
+                {filteredCategories?.reduce((acc, c) => acc + c.questions.length, 0) || 0} results for &ldquo;{searchQuery}&rdquo;
+              </p>
             </motion.div>
-          ))}
+          )}
+
+          <div className="space-y-8">
+            {displayCategories.map((category) => (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                {searchQuery && (
+                  <div className="flex items-center gap-2 mb-4">
+                    <category.icon className="w-5 h-5 text-teal" />
+                    <h2 className="font-semibold text-navy">{category.name}</h2>
+                  </div>
+                )}
+                <div className="space-y-3">
+                  {category.questions.map((item, index) => {
+                    const itemId = `${category.id}-${index}`;
+                    const isOpen = openItems.includes(itemId);
+                    return (
+                      <motion.div
+                        key={itemId}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                      >
+                        <button
+                          onClick={() => toggleItem(itemId)}
+                          className="w-full flex items-start justify-between p-6 text-left"
+                        >
+                          <span className="font-semibold text-navy pr-4 leading-relaxed">
+                            {item.q}
+                          </span>
+                          <div
+                            className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
+                              isOpen ? "bg-teal text-white" : "bg-gray-100 text-gray-500"
+                            }`}
+                          >
+                            <ChevronDown
+                              className={`w-5 h-5 transition-transform ${
+                                isOpen ? "rotate-180" : ""
+                              }`}
+                            />
+                          </div>
+                        </button>
+                        <AnimatePresence>
+                          {isOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="px-6 pb-6 pt-0">
+                                <div className="bg-gray-50 rounded-xl p-5 text-gray-600 leading-relaxed">
+                                  {item.a}
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Quick Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16 grid md:grid-cols-3 gap-4"
+          >
+            {[
+              { label: "Response Time", value: "< 24 hours", desc: "For all inquiries" },
+              { label: "Sessions Delivered", value: "30,000+", desc: "And counting" },
+              { label: "Cost to You", value: "$0", desc: "Always free" },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="bg-white rounded-2xl p-6 text-center border border-gray-200"
+              >
+                <p className="text-3xl font-bold text-teal mb-1">{stat.value}</p>
+                <p className="font-semibold text-navy text-sm">{stat.label}</p>
+                <p className="text-gray-500 text-xs">{stat.desc}</p>
+              </div>
+            ))}
+          </motion.div>
 
           {/* Contact CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-16 bg-gradient-to-br from-teal-pale to-emerald-100 rounded-2xl p-10 text-center"
+            className="mt-12 bg-navy rounded-2xl p-8 md:p-10 text-center"
           >
-            <h3 className="font-display text-2xl font-bold text-navy mb-3">
+            <div className="w-16 h-16 bg-teal/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <HelpCircle className="w-8 h-8 text-teal-light" />
+            </div>
+            <h3 className="font-display text-2xl font-bold text-white mb-3">
               Still have questions?
             </h3>
-            <p className="text-gray-600 mb-6 max-w-md mx-auto">
-              We're here to help. Reach out and we'll get back to you within 24
-              hours.
+            <p className="text-white/70 mb-8 max-w-md mx-auto">
+              Can&apos;t find what you&apos;re looking for? Our team is here to help.
+              We typically respond within 24 hours.
             </p>
-            <Link
-              href="/support"
-              className="inline-flex items-center bg-teal hover:bg-teal-dark text-white px-6 py-3 rounded-lg font-semibold transition-colors"
-            >
-              Contact Us
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/support"
+                className="bg-teal hover:bg-teal-light text-white px-8 py-4 rounded-xl font-semibold transition-colors"
+              >
+                Contact Support
+              </Link>
+              <a
+                href="tel:988"
+                className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-semibold transition-colors border border-white/20"
+              >
+                Crisis Line: 988
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
