@@ -15,6 +15,7 @@ import {
   Send,
 } from "lucide-react";
 import { partners, programs } from "@/lib/data";
+import HeroBackground from "@/components/ui/HeroBackground";
 
 export default function HomePage() {
   const [inquiryType, setInquiryType] = useState("");
@@ -84,50 +85,73 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-navy via-navy to-navy-light pt-8 pb-20 lg:pt-12 lg:pb-28 overflow-hidden">
-        {/* Background Glow */}
-        <div className="absolute top-[-50%] right-[-20%] w-[80%] h-[200%] bg-[radial-gradient(ellipse,rgba(13,148,136,0.15)_0%,transparent_60%)] pointer-events-none" />
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        <HeroBackground />
 
-        <div className="container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="container relative z-10 py-20">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Hero Content */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
             >
-              {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/10 px-4 py-2 rounded-full mb-6">
-                <span className="w-2 h-2 bg-teal rounded-full animate-pulse" />
-                <span className="text-teal-light text-sm font-semibold">
+              {/* Eyebrow Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-teal/20 to-teal/5 border border-teal/30 px-5 py-2.5 rounded-full mb-8 backdrop-blur-sm"
+              >
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal"></span>
+                </span>
+                <span className="text-teal-light text-sm font-semibold tracking-wide">
                   Contract & Grant Funded Mental Health Care
                 </span>
-              </div>
+              </motion.div>
 
-              <h1 className="font-display text-4xl md:text-5xl lg:text-[54px] font-bold text-white leading-[1.1] mb-6">
-                Care Without <span className="text-teal-light">Borders</span>
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
+                Care Without{" "}
+                <span className="relative">
+                  <span className="bg-gradient-to-r from-teal-light via-teal to-teal-light bg-clip-text text-transparent">
+                    Borders
+                  </span>
+                  <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none">
+                    <path d="M2 10C50 2 150 2 198 10" stroke="url(#underline-gradient)" strokeWidth="3" strokeLinecap="round"/>
+                    <defs>
+                      <linearGradient id="underline-gradient" x1="0" y1="0" x2="200" y2="0">
+                        <stop stopColor="#14b8a6" stopOpacity="0"/>
+                        <stop offset="0.5" stopColor="#14b8a6"/>
+                        <stop offset="1" stopColor="#14b8a6" stopOpacity="0"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </span>
               </h1>
 
-              <p className="text-lg text-white/75 leading-relaxed mb-8 max-w-xl">
+              <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-10 max-w-xl">
                 Free, anonymous mental health therapy for everyone. Licensed
-                therapists. No insurance required. No one turned away. Operating
-                the nation&apos;s largest 5G-enabled mobile telehealth fleet
-                since 2020.
+                therapists. No insurance required. No one turned away.
               </p>
 
               {/* Feature Pills */}
-              <div className="flex flex-wrap gap-6 mb-10">
+              <div className="flex flex-wrap gap-4 mb-10">
                 {["No Insurance Ever", "100% Anonymous", "Licensed Therapists"].map(
-                  (feature) => (
-                    <div
+                  (feature, index) => (
+                    <motion.div
                       key={feature}
-                      className="flex items-center gap-2.5 text-white font-medium"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4 + index * 0.1 }}
+                      className="flex items-center gap-2.5 bg-white/5 backdrop-blur-sm border border-white/10 px-4 py-2.5 rounded-full"
                     >
-                      <div className="w-6 h-6 bg-teal rounded-full flex items-center justify-center">
-                        <Check className="w-3.5 h-3.5" />
+                      <div className="w-5 h-5 bg-gradient-to-br from-teal to-teal-light rounded-full flex items-center justify-center">
+                        <Check className="w-3 h-3 text-white" />
                       </div>
-                      {feature}
-                    </div>
+                      <span className="text-white/90 font-medium text-sm">{feature}</span>
+                    </motion.div>
                   )
                 )}
               </div>
@@ -136,51 +160,56 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/support"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-navy font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+                  className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-teal to-teal-light text-white font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(13,148,136,0.4)] hover:scale-[1.02]"
                 >
-                  Start a Session
+                  <span className="relative z-10">Start a Session</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-teal-light to-teal opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Link>
                 <Link
                   href="#contact"
-                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-lg hover:border-white transition-colors"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 hover:border-white/40 transition-all duration-300"
                 >
-                  Funding Partnership →
+                  Funding Partnership
+                  <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </Link>
               </div>
             </motion.div>
 
             {/* Hero Video Card */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              initial={{ opacity: 0, y: 40, rotateY: -5 }}
+              animate={{ opacity: 1, y: 0, rotateY: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative"
             >
-              <div className="bg-white rounded-2xl overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.4)]">
-                <div className="relative aspect-video">
-                  <Image
-                    src="/images/van-fleet.jpg"
-                    alt="TeleHealth Van Mental Health Services"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center cursor-pointer hover:bg-black/40 transition-colors">
-                    <div className="w-[72px] h-[72px] bg-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-110 transition-transform">
-                      <Play
-                        className="w-7 h-7 text-navy ml-1"
-                        fill="currentColor"
-                      />
-                    </div>
+              {/* Glow behind video */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-teal/20 via-purple-500/10 to-teal/20 rounded-3xl blur-2xl opacity-60" />
+
+              <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-2 border border-white/10">
+                <div className="bg-navy rounded-xl overflow-hidden shadow-2xl">
+                  <div className="relative aspect-video">
+                    <video
+                      src="https://telehealthvan.com/wp-content/uploads/2025/01/telehealth_van_overview_video_update_7-12-24-1080p.mp4"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      controls
+                      className="w-full h-full object-cover"
+                      poster="/images/van-fleet.jpg"
+                    />
+                  </div>
+                  <div className="p-5 bg-gradient-to-r from-navy-light to-navy">
+                    <h4 className="font-bold text-white mb-1">See Our Impact</h4>
+                    <p className="text-sm text-white/60">
+                      Watch how we&apos;re transforming mental health access across California
+                    </p>
                   </div>
                 </div>
-                <div className="p-5 bg-white">
-                  <h4 className="font-bold text-gray-900 mb-1">See Our Impact</h4>
-                  <p className="text-sm text-gray-500">
-                    Watch how we&apos;re transforming mental health access across
-                    California
-                  </p>
-                </div>
               </div>
+
             </motion.div>
           </div>
         </div>

@@ -79,21 +79,41 @@ telehealth-van/
 │   └── lib/
 │       └── data.ts             # Content and data
 ├── public/
-│   └── images/                 # Logos, photos, assets
+│   ├── images/                 # Logos, photos, assets
+│   └── videos/                 # Video assets
 └── package.json
 ```
+
+## Features
+
+### Creative Hero Section
+- Modern gradient backgrounds with animated mesh orbs
+- Grid pattern overlay for depth
+- Glassmorphism effects on UI elements
+- Smooth Framer Motion animations
+- Reusable `HeroBackground` component for consistent styling across all pages
+
+### Video Integration
+- Auto-playing hero video with controls
+- Program-specific videos for Hawthorne Cares and Pull Up Mental Health Concert
+- Local video hosting in `/public/videos/`
+
+### Responsive Design
+- Mobile-first approach
+- Optimized for all screen sizes
+- Touch-friendly navigation
 
 ## Pages
 
 | Route | Page | Description |
 |-------|------|-------------|
-| `/` | Home | Hero, stats, programs overview, partners, fleet gallery |
-| `/programs` | Programs | All 6 programs with detailed descriptions |
+| `/` | Home | Hero with video, stats, programs overview, partners, fleet gallery |
+| `/programs` | Programs | All 6 programs with detailed descriptions and videos |
 | `/impact` | Impact | Metrics, awards, media coverage, testimonials |
 | `/fleet` | Fleet | Van information, locations, how it works |
 | `/partner` | Partner | Partnership opportunities, contact form |
 | `/support` | Support | Access care, crisis resources, contact form |
-| `/faq` | FAQ | Frequently asked questions |
+| `/faq` | FAQ | Searchable FAQ with category tabs |
 | `/privacy` | Privacy | Privacy Policy |
 | `/terms` | Terms | Terms of Service |
 | `/accessibility` | Accessibility | Accessibility Statement |
@@ -102,9 +122,9 @@ telehealth-van/
 
 1. **Mobile Telehealth Van** - Flagship 5G-enabled fleet serving communities
 2. **Student Wellness Program** - University partnerships across the country
-3. **Hawthorne Cares** - First city-wide mental health program in the nation
+3. **Hawthorne Cares** - First city-wide mental health program in the nation (with video)
 4. **Wellness Helpline for Afghans** - USCRI partnership for refugee support
-5. **Pull Up Mental Health Concert** - Annual event with Grammy-winning artists
+5. **Pull Up Mental Health Concert** - Annual event with Grammy-winning artists (with video)
 6. **Jewish Student Mental Health** - Ruderman Foundation funded program in Boston
 
 ## Impact
@@ -144,6 +164,13 @@ telehealth-van/
 - **Display Font:** Playfair Display (serif)
 - **Body Font:** Inter (sans-serif)
 
+### Components
+
+- `HeroBackground` - Reusable gradient background with animated orbs
+- `Header` - Sticky navigation with mobile menu
+- `Footer` - Multi-column footer with newsletter signup
+- `Button` - Styled button component with variants
+
 ## Scripts
 
 ```bash
@@ -152,6 +179,15 @@ npm run build    # Build for production
 npm run start    # Start production server
 npm run lint     # Run ESLint
 ```
+
+## Videos
+
+Videos are stored in `/public/videos/`:
+- `hero-overview.mp4` - Main overview video for the hero section
+
+External videos (from telehealthvan.com):
+- Hawthorne Cares overview
+- Pull Up Mental Health Concert overview
 
 ## License
 

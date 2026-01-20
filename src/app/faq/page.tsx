@@ -13,6 +13,7 @@ import {
   Search,
 } from "lucide-react";
 import Link from "next/link";
+import HeroBackground from "@/components/ui/HeroBackground";
 
 const categories = [
   {
@@ -157,8 +158,9 @@ export default function FAQPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-navy via-navy to-navy-light py-20 pt-32">
-        <div className="container text-center">
+      <section className="relative py-24 overflow-hidden">
+        <HeroBackground />
+        <div className="container relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

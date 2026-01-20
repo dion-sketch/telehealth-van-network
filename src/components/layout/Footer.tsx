@@ -10,10 +10,23 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-navy overflow-hidden">
+    <footer className="relative overflow-hidden">
+      {/* Fleet Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/van-fleet.jpg"
+          alt=""
+          fill
+          className="object-cover object-center"
+          priority={false}
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/95 to-navy/90" />
+      </div>
+
       {/* Decorative gradient */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal/50 to-transparent" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse,rgba(13,148,136,0.08)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal/50 to-transparent z-10" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse,rgba(13,148,136,0.08)_0%,transparent_70%)] pointer-events-none z-10" />
 
       {/* Main Footer Content */}
       <div className="container relative z-10 pt-16 pb-8">

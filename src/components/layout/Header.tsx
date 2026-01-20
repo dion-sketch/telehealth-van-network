@@ -36,8 +36,6 @@ export default function Header() {
             : "bg-navy"
         }`}
       >
-        {/* Gradient accent line */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-teal via-teal-light to-teal opacity-80" />
 
         <div className="container">
           <nav className="flex items-center justify-between py-4">

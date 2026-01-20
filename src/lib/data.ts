@@ -53,6 +53,7 @@ export interface Program {
   tags: string[];
   image: string;
   logo: string;
+  video?: string;
   color: ProgramColor;
   artists?: { name: string; grammy?: boolean }[];
 }
@@ -113,6 +114,7 @@ export const programs: Program[] = [
     tags: ["First Entire City as Client", "Police Partnership", "Award-Winning"],
     image: "/images/a-frame-sign.png",
     logo: "/images/hawthorne-cares-logo.png",
+    video: "https://telehealthvan.com/wp-content/uploads/2025/01/City-of-Hawthorne-TeleHealth-Van.mp4",
     color: "gold",
   },
   {
@@ -157,6 +159,7 @@ export const programs: Program[] = [
     ],
     image: "/images/van-session-1.jpeg",
     logo: "/images/pull-up-logo.png",
+    video: "https://telehealthvan.com/wp-content/uploads/2025/01/2023-Rambos-Pull-Up-Concert-at-Youtube_2.mp4",
     color: "purple",
   },
   {

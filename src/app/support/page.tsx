@@ -17,6 +17,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { supportAccessTypes, requestOptions, supportPromises } from "@/lib/data";
+import HeroBackground from "@/components/ui/HeroBackground";
 
 const accessIcons: { [key: string]: React.ElementType } = {
   graduation: GraduationCap,
@@ -48,9 +49,10 @@ export default function SupportPage() {
 
   return (
     <>
-      {/* Page Header - Teal Gradient (unique to Support page) */}
-      <section className="bg-gradient-to-br from-teal via-teal to-teal-dark py-20 pt-32">
-        <div className="container text-center">
+      {/* Page Header */}
+      <section className="relative py-24 overflow-hidden">
+        <HeroBackground />
+        <div className="container relative z-10 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

@@ -15,6 +15,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { serviceLocations, accessSteps, fleetFeatures } from "@/lib/data";
+import HeroBackground from "@/components/ui/HeroBackground";
 
 const locationIcons: { [key: string]: React.ElementType } = {
   palm: Palmtree,
@@ -35,8 +36,9 @@ export default function FleetPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="bg-gradient-to-br from-navy via-navy to-navy-light py-20 pt-32">
-        <div className="container text-center">
+      <section className="relative py-24 overflow-hidden">
+        <HeroBackground />
+        <div className="container relative z-10 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

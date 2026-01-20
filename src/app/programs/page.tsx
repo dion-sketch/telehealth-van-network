@@ -4,13 +4,15 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { CheckCircle } from "lucide-react";
 import { programs } from "@/lib/data";
+import HeroBackground from "@/components/ui/HeroBackground";
 
 export default function ProgramsPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="bg-gradient-to-br from-navy via-navy to-navy-light py-20 pt-32">
-        <div className="container text-center">
+      <section className="relative py-24 overflow-hidden">
+        <HeroBackground />
+        <div className="container relative z-10 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -53,7 +55,7 @@ export default function ProgramsPage() {
                   isReverse && !isPullUp ? "lg:grid-flow-dense" : ""
                 }`}
               >
-                {/* Logo Side */}
+                {/* Media Side - Video or Logo */}
                 <motion.div
                   initial={{ opacity: 0, x: isReverse ? 30 : -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -62,23 +64,39 @@ export default function ProgramsPage() {
                     isReverse && !isPullUp ? "lg:col-start-2" : ""
                   }`}
                 >
-                  <div
-                    className={`rounded-3xl p-12 flex items-center justify-center min-h-[280px] w-full max-w-[360px] ${
-                      isPullUp
-                        ? "bg-white/5 border border-white/10"
-                        : index % 2 === 0
-                        ? "bg-white shadow-lg border border-gray-200"
-                        : "bg-gray-50 shadow-lg border border-gray-200"
-                    }`}
-                  >
-                    <Image
-                      src={program.logo}
-                      alt={program.title}
-                      width={280}
-                      height={180}
-                      className="max-w-full max-h-[180px] object-contain"
-                    />
-                  </div>
+                  {program.video ? (
+                    <div className="relative aspect-video w-full max-w-[480px] rounded-2xl overflow-hidden shadow-2xl">
+                      <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        controls
+                        className="w-full h-full object-cover"
+                      >
+                        <source src={program.video} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  ) : (
+                    <div
+                      className={`rounded-3xl p-12 flex items-center justify-center min-h-[280px] w-full max-w-[360px] ${
+                        isPullUp
+                          ? "bg-white/5 border border-white/10"
+                          : index % 2 === 0
+                          ? "bg-white shadow-lg border border-gray-200"
+                          : "bg-gray-50 shadow-lg border border-gray-200"
+                      }`}
+                    >
+                      <Image
+                        src={program.logo}
+                        alt={program.title}
+                        width={280}
+                        height={180}
+                        className="max-w-full max-h-[180px] object-contain"
+                      />
+                    </div>
+                  )}
                 </motion.div>
 
                 {/* Content Side */}
