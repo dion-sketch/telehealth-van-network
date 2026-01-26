@@ -6,13 +6,17 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Check,
-  Play,
   Lock,
   Zap,
   BarChart3,
   Globe,
   GraduationCap,
   Send,
+  User,
+  Building2,
+  Handshake,
+  ClipboardList,
+  Heart,
 } from "lucide-react";
 import { partners, programs } from "@/lib/data";
 import HeroBackground from "@/components/ui/HeroBackground";
@@ -27,12 +31,12 @@ export default function HomePage() {
   });
 
   const inquiryOptions = [
-    { value: "individual", label: "Seeking Support", icon: "🙋" },
-    { value: "foundation", label: "Foundation / Funder", icon: "🏛️" },
-    { value: "partnership", label: "Partnership Interest", icon: "🤝" },
-    { value: "agency", label: "Government Agency", icon: "📋" },
-    { value: "school", label: "School / University", icon: "🎓" },
-    { value: "nonprofit", label: "Nonprofit Org", icon: "💚" },
+    { value: "individual", label: "Seeking Support", Icon: User },
+    { value: "foundation", label: "Foundation / Funder", Icon: Building2 },
+    { value: "partnership", label: "Partnership Interest", Icon: Handshake },
+    { value: "agency", label: "Government Agency", Icon: ClipboardList },
+    { value: "school", label: "School / University", Icon: GraduationCap },
+    { value: "nonprofit", label: "Nonprofit Org", Icon: Heart },
   ];
 
   const impactStats = [
@@ -56,6 +60,51 @@ export default function HomePage() {
       value: "#1",
       label: "Largest 5G Fleet",
       sublabel: "Mobile telehealth nationwide",
+    },
+  ];
+
+  const sessionTypes = [
+    {
+      id: 1,
+      image: "/images/carousal-images/1.png",
+      title: "Sit-Inside Sessions",
+      description: "Step inside our climate-controlled vans for private, comfortable therapy sessions with noise-canceling headphones.",
+      highlight: "Private & Comfortable",
+    },
+    {
+      id: 2,
+      image: "/images/carousal-images/2.png",
+      title: "Housing & Shelter Support",
+      description: "We bring mental health services directly to housing facilities, shelters, and transitional living spaces.",
+      highlight: "Community Outreach",
+    },
+    {
+      id: 3,
+      image: "/images/carousal-images/3.png",
+      title: "Walk-Up Sessions",
+      description: "No appointment needed. Walk up to any van location and connect with a licensed therapist immediately.",
+      highlight: "No Appointment Needed",
+    },
+    {
+      id: 4,
+      image: "/images/carousal-images/4.png",
+      title: "Campus Parking",
+      description: "Stationed at universities and colleges, providing convenient access for students between classes.",
+      highlight: "Student Accessibility",
+    },
+    {
+      id: 5,
+      image: "/images/carousal-images/5.png",
+      title: "Trained Technicians",
+      description: "Our friendly technicians guide you through the process and ensure a seamless therapy experience.",
+      highlight: "Expert Support",
+    },
+    {
+      id: 6,
+      image: "/images/carousal-images/6.png",
+      title: "Licensed Clinical Social Workers",
+      description: "Connect with LCSWs who specialize in trauma, anxiety, depression, and culturally-competent care.",
+      highlight: "Professional Care",
     },
   ];
 
@@ -339,6 +388,167 @@ export default function HomePage() {
         </motion.p>
       </section>
 
+      {/* How Sessions Work - Horizontal Showcase */}
+      <section className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+        {/* Subtle Background Texture */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%230c1f35\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }} />
+
+        <div className="container relative z-10">
+          {/* Section Header - Left Aligned Editorial Style */}
+          <div className="max-w-4xl mb-16">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-4 mb-6"
+            >
+              <div className="h-px w-12 bg-teal" />
+              <span className="text-teal text-sm font-bold uppercase tracking-[0.2em]">
+                Multiple Ways to Connect
+              </span>
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-navy mb-6 leading-[1.1]"
+            >
+              How Therapy
+              <br />
+              <span className="text-teal">Sessions Work</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-xl text-gray-500 max-w-2xl"
+            >
+              From walk-up sessions to campus visits, we meet you where you are with flexible, accessible mental health care.
+            </motion.p>
+          </div>
+        </div>
+
+        {/* Full-Width Horizontal Scroll Showcase */}
+        <div className="relative">
+          {/* Gradient Fade Edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+          {/* Scrolling Track */}
+          <div className="flex overflow-hidden">
+            <motion.div
+              className="flex gap-6 py-4"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 40,
+                  ease: "linear",
+                },
+              }}
+            >
+              {/* First set */}
+              {sessionTypes.map((session) => (
+                <div
+                  key={session.id}
+                  className="flex-shrink-0 w-[500px] md:w-[600px] group"
+                >
+                  <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
+                    {/* Banner Image - Natural 3:1 Ratio */}
+                    <div className="relative aspect-[3/1] overflow-hidden">
+                      <Image
+                        src={session.image}
+                        alt={session.title}
+                        fill
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                      />
+                      {/* Subtle overlay on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    </div>
+                    {/* Content */}
+                    <div className="p-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <h3 className="font-display font-bold text-navy text-xl mb-2 group-hover:text-teal transition-colors">
+                            {session.title}
+                          </h3>
+                          <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
+                            {session.description}
+                          </p>
+                        </div>
+                        <span className="flex-shrink-0 px-3 py-1.5 bg-teal/10 text-teal text-xs font-bold rounded-full whitespace-nowrap">
+                          {session.highlight}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {sessionTypes.map((session) => (
+                <div
+                  key={`${session.id}-dup`}
+                  className="flex-shrink-0 w-[500px] md:w-[600px] group"
+                >
+                  <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
+                    <div className="relative aspect-[3/1] overflow-hidden">
+                      <Image
+                        src={session.image}
+                        alt={session.title}
+                        fill
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    </div>
+                    <div className="p-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <h3 className="font-display font-bold text-navy text-xl mb-2 group-hover:text-teal transition-colors">
+                            {session.title}
+                          </h3>
+                          <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
+                            {session.description}
+                          </p>
+                        </div>
+                        <span className="flex-shrink-0 px-3 py-1.5 bg-teal/10 text-teal text-xs font-bold rounded-full whitespace-nowrap">
+                          {session.highlight}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="container relative z-10 mt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6"
+          >
+            <p className="text-gray-500 text-center sm:text-left">
+              Ready to connect with a licensed therapist?
+            </p>
+            <Link
+              href="/support"
+              className="inline-flex items-center gap-2 bg-teal hover:bg-teal-light text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-teal/25"
+            >
+              Start a Session
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Fleet Gallery Section */}
       <section id="fleet" className="py-24 bg-gradient-to-b from-white via-gray-50/50 to-white relative overflow-hidden">
         {/* Background decorations */}
@@ -411,29 +621,29 @@ export default function HomePage() {
           </div>
 
           {/* Main content grid */}
-          <div className="grid lg:grid-cols-12 gap-6">
+          <div className="grid lg:grid-cols-2 gap-6">
             {/* Main large image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="lg:col-span-7 relative rounded-3xl overflow-hidden shadow-2xl group"
+              className="relative rounded-3xl overflow-hidden shadow-2xl group"
             >
-              <div className="aspect-[4/3] relative">
+              <div className="aspect-[16/9] relative">
                 <Image
                   src="/images/telehealth-van-main.jpeg"
                   alt="TeleHealth Van Mobile Unit"
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent" />
 
                 {/* Overlay content */}
-                <div className="absolute bottom-0 left-0 right-0 p-8">
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
                       <svg
-                        className="w-6 h-6 text-white"
+                        className="w-5 h-5 md:w-6 md:h-6 text-white"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -453,7 +663,7 @@ export default function HomePage() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-white">
+                      <h3 className="text-xl md:text-2xl font-bold text-white">
                         We Go Where Clients Live
                       </h3>
                       <p className="text-white/70 text-sm">
@@ -477,87 +687,92 @@ export default function HomePage() {
               </div>
             </motion.div>
 
-            {/* Right side content */}
-            <div className="lg:col-span-5 flex flex-col gap-6">
-              {/* Stats cards row */}
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { number: "#1", label: "Largest Fleet", sublabel: "Nationwide" },
-                  { number: "5G", label: "Connected", sublabel: "Always Online" },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 + index * 0.1 }}
-                    className="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm hover:shadow-md hover:border-teal/30 transition-all"
-                  >
-                    <div className="text-3xl font-extrabold text-teal mb-1">
-                      {stat.number}
-                    </div>
-                    <div className="text-sm font-semibold text-navy">
-                      {stat.label}
-                    </div>
-                    <div className="text-xs text-gray-400">{stat.sublabel}</div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Secondary images */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="relative rounded-2xl overflow-hidden shadow-lg group flex-1 min-h-[200px]"
-              >
+            {/* Military Support image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="relative rounded-3xl overflow-hidden shadow-2xl group"
+            >
+              <div className="aspect-[16/9] relative">
                 <Image
                   src="/images/van-military-thumbs-up.jpg"
                   alt="TeleHealth Van at military base"
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                  <h5 className="font-bold text-lg mb-1">Military Support</h5>
-                  <p className="text-sm opacity-80">
-                    Serving veterans & military families
-                  </p>
-                </div>
-              </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent" />
 
-              {/* Feature list card */}
+                {/* Overlay content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 md:w-6 md:h-6 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-bold text-white">
+                        Military Support
+                      </h3>
+                      <p className="text-white/70 text-sm">
+                        Serving veterans & military families
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {["Coast Guard", "Veterans", "Active Duty"].map(
+                      (tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs font-medium"
+                        >
+                          {tag}
+                        </span>
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Stats and Features Row */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+            {[
+              { number: "#1", label: "Largest Fleet", sublabel: "Nationwide" },
+              { number: "5G", label: "Connected", sublabel: "Always Online" },
+              { number: "100%", label: "Free Sessions", sublabel: "No Insurance" },
+              { number: "24/7", label: "Availability", sublabel: "When You Need Us" },
+            ].map((stat, index) => (
               <motion.div
+                key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-                className="bg-navy rounded-2xl p-6"
+                transition={{ delay: 0.2 + index * 0.1 }}
+                className="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm hover:shadow-md hover:border-teal/30 transition-all text-center"
               >
-                <h4 className="text-white font-bold mb-4">
-                  Every Van Includes
-                </h4>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    "Licensed Therapists",
-                    "Private Headphones",
-                    "Secure Video",
-                    "QR Scheduling",
-                  ].map((feature) => (
-                    <div
-                      key={feature}
-                      className="flex items-center gap-2 text-white/80 text-sm"
-                    >
-                      <div className="w-5 h-5 bg-teal/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-teal-light" />
-                      </div>
-                      {feature}
-                    </div>
-                  ))}
+                <div className="text-3xl font-extrabold text-teal mb-1">
+                  {stat.number}
                 </div>
+                <div className="text-sm font-semibold text-navy">
+                  {stat.label}
+                </div>
+                <div className="text-xs text-gray-400">{stat.sublabel}</div>
               </motion.div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -737,35 +952,58 @@ export default function HomePage() {
               </p>
 
               <div className="space-y-5">
-                {[
-                  {
-                    icon: "🔒",
-                    title: "Confidential",
-                    text: "All inquiries are private and secure",
-                  },
-                  {
-                    icon: "⚡",
-                    title: "Fast Response",
-                    text: "We respond within 24 hours",
-                  },
-                  {
-                    icon: "💚",
-                    title: "No Obligation",
-                    text: "Explore partnership options freely",
-                  },
-                ].map((item) => (
-                  <div key={item.title} className="flex gap-4 items-start">
-                    <div className="w-10 h-10 bg-teal-pale rounded-xl flex items-center justify-center text-lg flex-shrink-0">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 mb-1">
-                        {item.title}
-                      </h4>
-                      <p className="text-sm text-gray-500">{item.text}</p>
-                    </div>
+                <div className="flex gap-4 items-start">
+                  <div className="w-12 h-12 bg-teal/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Lock className="w-5 h-5 text-teal" />
                   </div>
-                ))}
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-1">
+                      Confidential
+                    </h4>
+                    <p className="text-sm text-gray-500">All inquiries are private and secure</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="w-12 h-12 bg-teal/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Zap className="w-5 h-5 text-teal" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-1">
+                      Fast Response
+                    </h4>
+                    <p className="text-sm text-gray-500">We respond within 24 hours</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="w-12 h-12 bg-teal/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Check className="w-5 h-5 text-teal" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-1">
+                      No Obligation
+                    </h4>
+                    <p className="text-sm text-gray-500">Explore partnership options freely</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Van Image */}
+              <div className="mt-10 relative">
+                <div className="relative rounded-2xl overflow-hidden shadow-lg">
+                  <Image
+                    src="/images/tvh-program-ha.jpg"
+                    alt="TeleHealth Van Fleet at Hawthorne City Hall"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <p className="text-white font-semibold text-sm">
+                      Our 5G-enabled vans bring therapy directly to you
+                    </p>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
@@ -800,7 +1038,7 @@ export default function HomePage() {
                           onChange={(e) => setInquiryType(e.target.value)}
                           className="hidden"
                         />
-                        <span>{option.icon}</span>
+                        <option.Icon className="w-4 h-4" />
                         <span>{option.label}</span>
                       </label>
                     ))}
