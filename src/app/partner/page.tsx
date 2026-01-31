@@ -400,6 +400,7 @@ export default function PartnerPage() {
                     <input
                       type="text"
                       placeholder="Jane Smith"
+                      required
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-teal focus:outline-none transition-colors"
                       value={formData.name}
                       onChange={(e) =>
@@ -414,6 +415,7 @@ export default function PartnerPage() {
                     <input
                       type="email"
                       placeholder="jane@organization.org"
+                      required
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-teal focus:outline-none transition-colors"
                       value={formData.email}
                       onChange={(e) =>
@@ -430,6 +432,7 @@ export default function PartnerPage() {
                   <input
                     type="text"
                     placeholder="Your organization"
+                    required
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-teal focus:outline-none transition-colors"
                     value={formData.orgName}
                     onChange={(e) =>
@@ -443,6 +446,7 @@ export default function PartnerPage() {
                     Organization Type
                   </label>
                   <select
+                    required
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-teal focus:outline-none transition-colors bg-white"
                     value={formData.orgType}
                     onChange={(e) =>
@@ -466,6 +470,8 @@ export default function PartnerPage() {
                   <textarea
                     placeholder="What community do you serve? What are you hoping to achieve?"
                     rows={4}
+                    required
+                    minLength={10}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-teal focus:outline-none transition-colors resize-none"
                     value={formData.message}
                     onChange={(e) =>

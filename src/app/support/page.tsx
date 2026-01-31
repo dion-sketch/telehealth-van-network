@@ -356,6 +356,7 @@ export default function SupportPage() {
                     <input
                       type="email"
                       placeholder="you@email.com"
+                      required
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-teal focus:outline-none transition-colors bg-white"
                       value={formData.email}
                       onChange={(e) =>
@@ -372,6 +373,7 @@ export default function SupportPage() {
                   <input
                     type="text"
                     placeholder="City, State"
+                    required
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-teal focus:outline-none transition-colors bg-white"
                     value={formData.location}
                     onChange={(e) =>
@@ -385,6 +387,7 @@ export default function SupportPage() {
                     I am a...
                   </label>
                   <select
+                    required
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-teal focus:outline-none transition-colors bg-white"
                     value={formData.type}
                     onChange={(e) =>
@@ -406,6 +409,8 @@ export default function SupportPage() {
                   <textarea
                     placeholder="Tell us a bit about what you're looking for..."
                     rows={4}
+                    required
+                    minLength={10}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-teal focus:outline-none transition-colors resize-none bg-white"
                     value={formData.message}
                     onChange={(e) =>
