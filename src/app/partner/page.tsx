@@ -18,6 +18,8 @@ import {
   Home,
   DollarSign,
   Ambulance,
+  Loader2,
+  AlertCircle,
 } from "lucide-react";
 import {
   partnershipBenefits,
@@ -59,6 +61,37 @@ export default function PartnerPage() {
     orgType: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/partner", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || "Failed to submit form");
+      }
+
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", orgName: "", orgType: "", message: "" });
+    } catch (error) {
+      setSubmitStatus("error");
+      setErrorMessage(error instanceof Error ? error.message : "Something went wrong");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -341,7 +374,24 @@ export default function PartnerPage() {
               viewport={{ once: true }}
               className="bg-gray-50 rounded-2xl p-8 border border-gray-200"
             >
-              <form className="space-y-5">
+              {submitStatus === "success" ? (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-teal-pale rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-8 h-8 text-teal" />
+                  </div>
+                  <h3 className="text-xl font-bold text-navy mb-2">Thank You!</h3>
+                  <p className="text-gray-600 mb-6">
+                    We&apos;ve received your partnership inquiry and will respond within 24 hours.
+                  </p>
+                  <button
+                    onClick={() => setSubmitStatus("idle")}
+                    className="text-teal font-semibold hover:underline"
+                  >
+                    Send another inquiry
+                  </button>
+                </div>
+              ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -424,17 +474,37 @@ export default function PartnerPage() {
                   />
                 </div>
 
+                {/* Error Message */}
+                {submitStatus === "error" && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-red-800 font-medium">Failed to send message</p>
+                      <p className="text-red-600 text-sm">{errorMessage}</p>
+                    </div>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full bg-teal hover:bg-teal-dark text-white font-semibold py-4 rounded-lg transition-colors"
+                  disabled={isSubmitting || !formData.orgType}
+                  className="w-full bg-teal hover:bg-teal-dark text-white font-semibold py-4 rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    "Send Message"
+                  )}
                 </button>
 
                 <p className="text-center text-sm text-gray-500">
                   We&apos;ll respond within 24 hours
                 </p>
               </form>
+              )}
             </motion.div>
           </div>
         </div>

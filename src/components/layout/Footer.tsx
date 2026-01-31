@@ -1,13 +1,44 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Heart, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Heart, Mail, Phone, MapPin, ArrowRight, Loader2, CheckCircle } from "lucide-react";
 import { footerLinks } from "@/lib/data";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to subscribe");
+      }
+
+      setSubmitStatus("success");
+      setEmail("");
+    } catch {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <footer className="relative overflow-hidden">
@@ -167,21 +198,44 @@ export default function Footer() {
                 Get updates on new programs and mental health resources.
               </p>
             </div>
-            <form className="flex gap-3 w-full md:w-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 md:w-64 px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:border-teal/50 transition-colors"
-              />
-              <button
-                type="submit"
-                className="px-5 py-3 bg-teal hover:bg-teal-light text-white font-semibold rounded-lg transition-colors flex items-center gap-2 whitespace-nowrap"
-              >
-                Subscribe
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </form>
+            {submitStatus === "success" ? (
+              <div className="flex items-center gap-2 text-teal-light">
+                <CheckCircle className="w-5 h-5" />
+                <span className="font-medium">Thanks for subscribing!</span>
+              </div>
+            ) : (
+              <form onSubmit={handleNewsletterSubmit} className="flex gap-3 w-full md:w-auto">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={`flex-1 md:w-64 px-4 py-3 bg-white/5 border rounded-lg text-white placeholder:text-white/30 focus:outline-none transition-colors ${
+                    submitStatus === "error" ? "border-red-400" : "border-white/10 focus:border-teal/50"
+                  }`}
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting || !email}
+                  className="px-5 py-3 bg-teal hover:bg-teal-light text-white font-semibold rounded-lg transition-colors flex items-center gap-2 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <>
+                      Subscribe
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
           </div>
+          {submitStatus === "error" && (
+            <p className="text-red-400 text-sm mt-2 md:text-right">
+              Failed to subscribe. Please try again.
+            </p>
+          )}
         </div>
 
         {/* Bottom Bar */}

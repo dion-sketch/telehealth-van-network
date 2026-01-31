@@ -17,6 +17,9 @@ import {
   Handshake,
   ClipboardList,
   Heart,
+  Loader2,
+  CheckCircle,
+  AlertCircle,
 } from "lucide-react";
 import { partners, programs } from "@/lib/data";
 import HeroBackground from "@/components/ui/HeroBackground";
@@ -29,6 +32,41 @@ export default function HomePage() {
     organization: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          inquiryType,
+          ...formData,
+        }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || "Failed to submit form");
+      }
+
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", organization: "", message: "" });
+      setInquiryType("");
+    } catch (error) {
+      setSubmitStatus("error");
+      setErrorMessage(error instanceof Error ? error.message : "Something went wrong");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const inquiryOptions = [
     { value: "individual", label: "Seeking Support", Icon: User },
@@ -1014,7 +1052,24 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border border-gray-200"
             >
-              <form>
+              {submitStatus === "success" ? (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-teal-pale rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-8 h-8 text-teal" />
+                  </div>
+                  <h3 className="text-xl font-bold text-navy mb-2">Thank You!</h3>
+                  <p className="text-gray-600 mb-6">
+                    We&apos;ve received your message and will respond within 24 hours.
+                  </p>
+                  <button
+                    onClick={() => setSubmitStatus("idle")}
+                    className="text-teal font-semibold hover:underline"
+                  >
+                    Send another message
+                  </button>
+                </div>
+              ) : (
+              <form onSubmit={handleSubmit}>
                 {/* Inquiry Type */}
                 <div className="mb-6">
                   <label className="block text-sm font-semibold text-gray-700 mb-3">
@@ -1109,13 +1164,34 @@ export default function HomePage() {
                   />
                 </div>
 
+                {/* Error Message */}
+                {submitStatus === "error" && (
+                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-red-800 font-medium">Failed to send message</p>
+                      <p className="text-red-600 text-sm">{errorMessage}</p>
+                    </div>
+                  </div>
+                )}
+
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="w-full py-4 bg-teal text-white font-semibold rounded-lg hover:bg-teal-light transition-colors flex items-center justify-center gap-2"
+                  disabled={isSubmitting || !inquiryType}
+                  className="w-full py-4 bg-teal text-white font-semibold rounded-lg hover:bg-teal-light transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Submit Inquiry
-                  <Send className="w-4 h-4" />
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Submit Inquiry
+                      <Send className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
 
                 {/* Footer */}
@@ -1128,6 +1204,7 @@ export default function HomePage() {
                   </span>
                 </div>
               </form>
+              )}
             </motion.div>
           </div>
         </div>

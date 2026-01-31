@@ -20,8 +20,10 @@ TeleHealth Van Network delivers free, grant-funded mental health care through mo
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4
 - **Animations:** Framer Motion
-- **Fonts:** Playfair Display (headings), Inter (body)
+- **Fonts:** Roboto (headings), DM Sans (body)
 - **Icons:** Lucide React
+- **Email:** Resend
+- **Validation:** Zod
 
 ## Getting Started
 
@@ -39,11 +41,27 @@ cd telehealth-van-network
 # Install dependencies
 npm install
 
+# Set up environment variables
+cp .env.example .env.local
+# Edit .env.local with your Resend API key
+
 # Run development server
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view the site.
+
+### Environment Variables
+
+Create a `.env.local` file with the following variables:
+
+```bash
+# Resend API Key (get yours at https://resend.com)
+RESEND_API_KEY=re_xxxxxxxxx
+
+# Email address for form submissions
+CONTACT_EMAIL=info@telehealthvan.org
+```
 
 ### Build
 
@@ -60,9 +78,14 @@ npm start
 ```
 telehealth-van/
 ├── src/
-│   ├── app/                    # Next.js App Router pages
+│   ├── app/
 │   │   ├── layout.tsx          # Root layout
 │   │   ├── page.tsx            # Home page
+│   │   ├── api/                # API routes
+│   │   │   ├── contact/        # Contact form API
+│   │   │   ├── partner/        # Partner form API
+│   │   │   ├── support/        # Support form API
+│   │   │   └── newsletter/     # Newsletter API
 │   │   ├── programs/           # Programs page
 │   │   ├── impact/             # Impact & Recognition
 │   │   ├── fleet/              # Our Fleet
@@ -77,14 +100,24 @@ telehealth-van/
 │   │   ├── sections/           # Page sections
 │   │   └── ui/                 # Reusable UI components
 │   └── lib/
-│       └── data.ts             # Content and data
+│       ├── data.ts             # Content and data
+│       └── validations/        # Zod form schemas
 ├── public/
 │   ├── images/                 # Logos, photos, assets
 │   └── videos/                 # Video assets
+├── .env.example                # Environment variables template
 └── package.json
 ```
 
 ## Features
+
+### Working Contact Forms
+- **Home Page** - Main contact form with inquiry type selection
+- **Partner Page** - Partnership inquiry form
+- **Support Page** - Support request form
+- **Newsletter** - Email subscription in footer
+- All forms powered by Resend for email delivery
+- Loading states, success/error feedback, and validation
 
 ### Creative Hero Section
 - Modern gradient backgrounds with animated mesh orbs
@@ -161,8 +194,8 @@ telehealth-van/
 
 ### Typography
 
-- **Display Font:** Playfair Display (serif)
-- **Body Font:** Inter (sans-serif)
+- **Display Font:** Roboto (sans-serif)
+- **Body Font:** DM Sans (sans-serif)
 
 ### Components
 
