@@ -278,7 +278,7 @@ export default function HomePage() {
                 <div className="bg-navy rounded-xl overflow-hidden shadow-2xl">
                   <div className="relative aspect-video">
                     <video
-                      src="https://telehealthvan.com/wp-content/uploads/2025/01/telehealth_van_overview_video_update_7-12-24-1080p.mp4"
+                      src="https://db3cd46btlubj.cloudfront.net/hero-overview.mp4"
                       autoPlay
                       muted
                       loop
