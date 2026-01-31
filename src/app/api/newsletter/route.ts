@@ -30,8 +30,8 @@ export async function POST(request: NextRequest) {
     // Send notification email to admin
     const resend = getResend();
     const { error } = await resend.emails.send({
-      from: "TeleHealth Van <notifications@telehealthvan.org>",
-      to: process.env.CONTACT_EMAIL || "info@telehealthvan.org",
+      from: "TeleHealth Van <notifications@telehealthvan.com>",
+      to: process.env.CONTACT_EMAIL || "info@telehealthvan.com",
       subject: "New Newsletter Subscription",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
 
     // Send welcome email to subscriber
     await resend.emails.send({
-      from: "TeleHealth Van <hello@telehealthvan.org>",
+      from: "TeleHealth Van <hello@telehealthvan.com>",
       to: email,
       subject: "Welcome to TeleHealth Van Updates",
       html: `
@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
               Need support now?
             </p>
             <p style="margin: 10px 0 0; color: #333;">
-              Visit <a href="https://telehealthvan.org/support" style="color: #0d9488;">telehealthvan.org/support</a>
+              Visit <a href="https://telehealthvan.com/support" style="color: #0d9488;">telehealthvan.com/support</a>
               to learn how to access free therapy.
             </p>
           </div>

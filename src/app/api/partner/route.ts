@@ -39,8 +39,8 @@ export async function POST(request: NextRequest) {
     // Send email using Resend
     const resend = getResend();
     const { error } = await resend.emails.send({
-      from: "TeleHealth Van <notifications@telehealthvan.org>",
-      to: process.env.CONTACT_EMAIL || "info@telehealthvan.org",
+      from: "TeleHealth Van <notifications@telehealthvan.com>",
+      to: process.env.CONTACT_EMAIL || "info@telehealthvan.com",
       replyTo: email,
       subject: `New Partnership Inquiry - ${orgName}`,
       html: `
