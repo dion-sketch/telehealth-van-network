@@ -29,6 +29,7 @@ export default function HomePage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     organization: "",
     message: "",
   });
@@ -58,7 +59,7 @@ export default function HomePage() {
       }
 
       setSubmitStatus("success");
-      setFormData({ name: "", email: "", organization: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", organization: "", message: "" });
       setInquiryType("");
     } catch (error) {
       setSubmitStatus("error");
@@ -1109,6 +1110,7 @@ export default function HomePage() {
                     <input
                       type="text"
                       placeholder="Your name"
+                      required
                       className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-lg focus:border-teal focus:outline-none transition-colors bg-white"
                       value={formData.name}
                       onChange={(e) =>
@@ -1123,6 +1125,7 @@ export default function HomePage() {
                     <input
                       type="email"
                       placeholder="you@email.com"
+                      required
                       className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-lg focus:border-teal focus:outline-none transition-colors bg-white"
                       value={formData.email}
                       onChange={(e) =>
@@ -1130,6 +1133,23 @@ export default function HomePage() {
                       }
                     />
                   </div>
+                </div>
+
+                {/* Phone */}
+                <div className="mb-6">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="(555) 123-4567"
+                    required
+                    className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-lg focus:border-teal focus:outline-none transition-colors bg-white"
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
+                  />
                 </div>
 
                 {/* Organization */}

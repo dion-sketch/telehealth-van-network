@@ -48,6 +48,7 @@ export default function SupportPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     location: "",
     type: "",
     message: "",
@@ -75,7 +76,7 @@ export default function SupportPage() {
       }
 
       setSubmitStatus("success");
-      setFormData({ name: "", email: "", location: "", type: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", location: "", type: "", message: "" });
     } catch (error) {
       setSubmitStatus("error");
       setErrorMessage(error instanceof Error ? error.message : "Something went wrong");
@@ -364,6 +365,22 @@ export default function SupportPage() {
                       }
                     />
                   </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="(555) 123-4567"
+                    required
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-teal focus:outline-none transition-colors bg-white"
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
+                  />
                 </div>
 
                 <div>

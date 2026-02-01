@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { name, email, location, type, message } = result.data;
+    const { name, email, phone, location, type, message } = result.data;
 
     // Send email using Resend
     const resend = getResend();
@@ -62,6 +62,12 @@ export async function POST(request: NextRequest) {
               <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Email:</td>
               <td style="padding: 10px; border-bottom: 1px solid #eee;">
                 <a href="mailto:${email}">${email}</a>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Phone:</td>
+              <td style="padding: 10px; border-bottom: 1px solid #eee;">
+                <a href="tel:${phone}">${phone}</a>
               </td>
             </tr>
             <tr>

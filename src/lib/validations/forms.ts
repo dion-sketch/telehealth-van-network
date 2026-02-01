@@ -12,6 +12,7 @@ export const contactFormSchema = z.object({
   ]),
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Please enter a valid email address"),
+  phone: z.string().min(10, "Please enter a valid phone number"),
   organization: z.string().optional(),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
@@ -22,6 +23,7 @@ export type ContactFormData = z.infer<typeof contactFormSchema>;
 export const partnerFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Please enter a valid email address"),
+  phone: z.string().min(10, "Please enter a valid phone number"),
   orgName: z.string().min(1, "Organization name is required"),
   orgType: z.enum([
     "city",
@@ -40,6 +42,7 @@ export type PartnerFormData = z.infer<typeof partnerFormSchema>;
 export const supportFormSchema = z.object({
   name: z.string().optional(),
   email: z.string().email("Please enter a valid email address"),
+  phone: z.string().min(10, "Please enter a valid phone number"),
   location: z.string().min(1, "Location is required"),
   type: z.enum(["student", "resident", "refugee", "other"]),
   message: z.string().min(10, "Message must be at least 10 characters"),
