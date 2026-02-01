@@ -382,7 +382,7 @@ export default function PartnerPage() {
                   </div>
                   <h3 className="text-xl font-bold text-navy mb-2">Thank You!</h3>
                   <p className="text-gray-600 mb-6">
-                    We&apos;ve received your partnership inquiry and will respond within 24 hours.
+                    Thank you for your submission. A TeleHealth Van staff member will respond soon.
                   </p>
                   <button
                     onClick={() => setSubmitStatus("idle")}

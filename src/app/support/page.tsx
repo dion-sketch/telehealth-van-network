@@ -322,9 +322,9 @@ export default function SupportPage() {
                   <div className="w-16 h-16 bg-teal-pale rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="w-8 h-8 text-teal" />
                   </div>
-                  <h3 className="text-xl font-bold text-navy mb-2">We&apos;re Here to Help</h3>
+                  <h3 className="text-xl font-bold text-navy mb-2">Thank You!</h3>
                   <p className="text-gray-600 mb-6">
-                    Thank you for reaching out. We&apos;ll get back to you within 24 hours to help connect you with services.
+                    Thank you for your submission. A TeleHealth Van staff member will respond soon.
                   </p>
                   <button
                     onClick={() => setSubmitStatus("idle")}
