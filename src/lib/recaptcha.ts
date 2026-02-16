@@ -65,7 +65,7 @@ export async function verifyRecaptcha(
       };
     }
 
-    if (data.score < 0.8) {
+    if (data.score < 0.5) {
       return {
         success: false,
         score: data.score,
