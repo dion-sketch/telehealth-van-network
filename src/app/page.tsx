@@ -23,6 +23,8 @@ import {
 } from "lucide-react";
 import { partners, programs } from "@/lib/data";
 import HeroBackground from "@/components/ui/HeroBackground";
+import { useRecaptcha } from "@/hooks/useRecaptcha";
+import HoneypotField from "@/components/ui/HoneypotField";
 
 export default function HomePage() {
   const [inquiryType, setInquiryType] = useState("");
@@ -36,6 +38,7 @@ export default function HomePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const { executeRecaptcha } = useRecaptcha();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,12 +47,17 @@ export default function HomePage() {
     setErrorMessage("");
 
     try {
+      const recaptchaToken = await executeRecaptcha("contact");
+      const honeypotValue = (document.getElementById("_hp_website") as HTMLInputElement)?.value || "";
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           inquiryType,
           ...formData,
+          recaptchaToken,
+          _hp_website: honeypotValue,
         }),
       });
 
@@ -1071,6 +1079,7 @@ export default function HomePage() {
                 </div>
               ) : (
               <form onSubmit={handleSubmit}>
+                <HoneypotField />
                 {/* Inquiry Type */}
                 <div className="mb-6">
                   <label className="block text-sm font-semibold text-gray-700 mb-3">

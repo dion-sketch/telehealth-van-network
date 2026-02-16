@@ -6,12 +6,15 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart, Mail, Phone, MapPin, ArrowRight, Loader2, CheckCircle } from "lucide-react";
 import { footerLinks } from "@/lib/data";
+import { useRecaptcha } from "@/hooks/useRecaptcha";
+import HoneypotField from "@/components/ui/HoneypotField";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const { executeRecaptcha } = useRecaptcha();
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,10 +24,17 @@ export default function Footer() {
     setSubmitStatus("idle");
 
     try {
+      const recaptchaToken = await executeRecaptcha("newsletter");
+      const honeypotValue = (document.getElementById("_hp_newsletter") as HTMLInputElement)?.value || "";
+
       const response = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+          email,
+          recaptchaToken,
+          _hp_website: honeypotValue,
+        }),
       });
 
       if (!response.ok) {
@@ -205,6 +215,7 @@ export default function Footer() {
               </div>
             ) : (
               <form onSubmit={handleNewsletterSubmit} className="flex gap-3 w-full md:w-auto">
+                <HoneypotField id="_hp_newsletter" />
                 <input
                   type="email"
                   placeholder="Enter your email"

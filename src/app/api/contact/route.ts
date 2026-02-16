@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { contactFormSchema } from "@/lib/validations/forms";
+import { runSpamChecks } from "@/lib/spam-protection";
 
 // Initialize Resend only when API key is available (not during build)
 const getResend = () => {
@@ -24,6 +25,17 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
+    // Run spam checks (honeypot, rate limit, reCAPTCHA)
+    const spamResult = await runSpamChecks(request, body, {
+      recaptchaAction: "contact",
+    });
+    if (!spamResult.passed) {
+      return NextResponse.json(
+        { error: spamResult.error },
+        { status: spamResult.status || 400 }
+      );
+    }
+
     // Validate the request body
     const result = contactFormSchema.safeParse(body);
 
@@ -34,7 +46,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { inquiryType, name, email, phone, organization, message } = result.data;
+    const { recaptchaToken: _token, _hp_website: _hp, ...formData } = result.data;
+    const { inquiryType, name, email, phone, organization, message } = formData;
 
     // Send email using Resend
     const resend = getResend();

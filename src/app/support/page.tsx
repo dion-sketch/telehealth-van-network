@@ -24,6 +24,8 @@ import {
 } from "lucide-react";
 import { supportAccessTypes, requestOptions, supportPromises } from "@/lib/data";
 import HeroBackground from "@/components/ui/HeroBackground";
+import { useRecaptcha } from "@/hooks/useRecaptcha";
+import HoneypotField from "@/components/ui/HoneypotField";
 
 const accessIcons: { [key: string]: React.ElementType } = {
   graduation: GraduationCap,
@@ -56,6 +58,7 @@ export default function SupportPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const { executeRecaptcha } = useRecaptcha();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,10 +67,17 @@ export default function SupportPage() {
     setErrorMessage("");
 
     try {
+      const recaptchaToken = await executeRecaptcha("support");
+      const honeypotValue = (document.getElementById("_hp_website") as HTMLInputElement)?.value || "";
+
       const response = await fetch("/api/support", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken,
+          _hp_website: honeypotValue,
+        }),
       });
 
       if (!response.ok) {
@@ -335,6 +345,7 @@ export default function SupportPage() {
                 </div>
               ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
+                <HoneypotField />
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">

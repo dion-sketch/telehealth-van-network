@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { newsletterSchema } from "@/lib/validations/forms";
+import { runSpamChecks } from "@/lib/spam-protection";
 
 // Initialize Resend only when API key is available (not during build)
 const getResend = () => {
@@ -15,6 +16,18 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
+    // Run spam checks (honeypot, rate limit, reCAPTCHA) - stricter limit for newsletter
+    const spamResult = await runSpamChecks(request, body, {
+      recaptchaAction: "newsletter",
+      rateLimitMaxRequests: 3,
+    });
+    if (!spamResult.passed) {
+      return NextResponse.json(
+        { error: spamResult.error },
+        { status: spamResult.status || 400 }
+      );
+    }
+
     // Validate the request body
     const result = newsletterSchema.safeParse(body);
 
@@ -25,7 +38,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { email } = result.data;
+    const { recaptchaToken: _token, _hp_website: _hp, ...formData } = result.data;
+    const { email } = formData;
 
     // Send notification email to admin
     const resend = getResend();

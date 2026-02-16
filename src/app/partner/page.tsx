@@ -29,6 +29,8 @@ import {
   accessSteps,
 } from "@/lib/data";
 import HeroBackground from "@/components/ui/HeroBackground";
+import { useRecaptcha } from "@/hooks/useRecaptcha";
+import HoneypotField from "@/components/ui/HoneypotField";
 
 const benefitIcons: { [key: string]: React.ElementType } = {
   calendar: Calendar,
@@ -65,6 +67,7 @@ export default function PartnerPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const { executeRecaptcha } = useRecaptcha();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,10 +76,17 @@ export default function PartnerPage() {
     setErrorMessage("");
 
     try {
+      const recaptchaToken = await executeRecaptcha("partner");
+      const honeypotValue = (document.getElementById("_hp_website") as HTMLInputElement)?.value || "";
+
       const response = await fetch("/api/partner", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken,
+          _hp_website: honeypotValue,
+        }),
       });
 
       if (!response.ok) {
@@ -393,6 +403,7 @@ export default function PartnerPage() {
                 </div>
               ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
+                <HoneypotField />
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
