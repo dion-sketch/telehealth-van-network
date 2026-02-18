@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { supportAccessTypes, requestOptions, supportPromises } from "@/lib/data";
 import HeroBackground from "@/components/ui/HeroBackground";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import { useRecaptcha } from "@/hooks/useRecaptcha";
 import HoneypotField from "@/components/ui/HoneypotField";
 
@@ -100,6 +101,7 @@ export default function SupportPage() {
       {/* Page Header */}
       <section className="relative py-24 overflow-hidden">
         <HeroBackground />
+        <Breadcrumb items={[{ label: "Get Support" }]} />
         <div className="container relative z-10 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

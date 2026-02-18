@@ -29,6 +29,7 @@ import {
   accessSteps,
 } from "@/lib/data";
 import HeroBackground from "@/components/ui/HeroBackground";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import { useRecaptcha } from "@/hooks/useRecaptcha";
 import HoneypotField from "@/components/ui/HoneypotField";
 
@@ -109,6 +110,7 @@ export default function PartnerPage() {
       {/* Page Header */}
       <section className="relative py-24 overflow-hidden">
         <HeroBackground />
+        <Breadcrumb items={[{ label: "Partner With Us" }]} />
         <div className="container relative z-10 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

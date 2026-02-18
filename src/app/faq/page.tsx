@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import HeroBackground from "@/components/ui/HeroBackground";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 
 const categories = [
   {
@@ -160,6 +161,7 @@ export default function FAQPage() {
       {/* Hero */}
       <section className="relative py-24 overflow-hidden">
         <HeroBackground />
+        <Breadcrumb items={[{ label: "FAQ" }]} />
         <div className="container relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
