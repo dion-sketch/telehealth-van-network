@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Shield } from "lucide-react";
 import Link from "next/link";
 import HeroBackground from "@/components/ui/HeroBackground";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 
 export default function PrivacyPage() {
   return (
@@ -11,6 +12,7 @@ export default function PrivacyPage() {
       {/* Hero */}
       <section className="relative py-24 overflow-hidden">
         <HeroBackground />
+        <Breadcrumb items={[{ label: "Privacy Policy" }]} />
         <div className="container relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

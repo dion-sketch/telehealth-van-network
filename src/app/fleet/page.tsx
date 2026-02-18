@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { serviceLocations, accessSteps, fleetFeatures } from "@/lib/data";
 import HeroBackground from "@/components/ui/HeroBackground";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 
 const locationIcons: { [key: string]: React.ElementType } = {
   palm: Palmtree,
@@ -38,6 +39,7 @@ export default function FleetPage() {
       {/* Page Header */}
       <section className="relative py-24 overflow-hidden">
         <HeroBackground />
+        <Breadcrumb items={[{ label: "Our Fleet" }]} />
         <div className="container relative z-10 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

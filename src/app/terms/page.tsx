@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FileText } from "lucide-react";
 import Link from "next/link";
 import HeroBackground from "@/components/ui/HeroBackground";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 
 export default function TermsPage() {
   return (
@@ -11,6 +12,7 @@ export default function TermsPage() {
       {/* Hero */}
       <section className="relative py-24 overflow-hidden">
         <HeroBackground />
+        <Breadcrumb items={[{ label: "Terms of Service" }]} />
         <div className="container relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

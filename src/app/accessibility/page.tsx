@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Accessibility, Check } from "lucide-react";
 import Link from "next/link";
 import HeroBackground from "@/components/ui/HeroBackground";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 
 export default function AccessibilityPage() {
   const commitments = [
@@ -50,6 +51,7 @@ export default function AccessibilityPage() {
       {/* Hero */}
       <section className="relative py-24 overflow-hidden">
         <HeroBackground />
+        <Breadcrumb items={[{ label: "Accessibility" }]} />
         <div className="container relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { CheckCircle } from "lucide-react";
 import { programs } from "@/lib/data";
 import HeroBackground from "@/components/ui/HeroBackground";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 
 export default function ProgramsPage() {
   return (
@@ -12,6 +13,7 @@ export default function ProgramsPage() {
       {/* Page Header */}
       <section className="relative py-24 overflow-hidden">
         <HeroBackground />
+        <Breadcrumb items={[{ label: "Programs" }]} />
         <div className="container relative z-10 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
